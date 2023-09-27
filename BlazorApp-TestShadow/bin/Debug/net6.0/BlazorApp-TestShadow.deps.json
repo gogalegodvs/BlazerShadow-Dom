@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "BlazorApp-TestShadow/1.0.0": {
+        "runtime": {
+          "BlazorApp-TestShadow.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BlazorApp-TestShadow/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

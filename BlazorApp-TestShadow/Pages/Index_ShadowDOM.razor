@@ -1,0 +1,39 @@
+﻿@page "/shadowDom"
+@using Microsoft.AspNetCore.Components
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
+
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+Welcome to your new app.
+
+<div>
+    <h1>Shadow DOM Component</h1>
+    <div id="shadow-root"></div>
+</div>
+
+<button @onclick="AttachShadowDom">Populate</button>
+
+@code {
+
+
+    [Inject] private IJSRuntime JSRuntime { get; set; }
+    private IJSObjectReference _jsModule = null!;
+    
+    private async Task AttachShadowDom()
+    {
+        await _jsModule.InvokeVoidAsync("attachShadowDom", "shadow-root");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _jsModule = await JS.InvokeAsync<IJSObjectReference>("import", "./js/shadow-dom.js");
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+}
