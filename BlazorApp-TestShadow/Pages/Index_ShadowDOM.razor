@@ -38,7 +38,7 @@ Welcome to your new app.
 
     private async Task AttachShadowDom()
     {
-        await _jsModule.InvokeVoidAsync("attachShadowDom", "shadow-root");
+        await _jsModule.InvokeVoidAsync("attachShadowDom", "shadow-root", "div-move");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
