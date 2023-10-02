@@ -20,7 +20,7 @@ Welcome to your new app.
 </div>
 
 
-<button @onclick="AttachShadowDom">Populate</button>
+<button @onclick="AttachShadowDom">Apply SHADOW DOM</button>
 
 @code {
 
@@ -28,15 +28,6 @@ Welcome to your new app.
     [Inject] private IJSRuntime JSRuntime { get; set; }
     private IJSObjectReference _jsModule = null!;
     private string previewHTML = "ABC";
-
-    private string BuildHTML(){
-
-        var header = "header";
-        var attachments = "attachments";
-        var body = "body";
-
-        return $"<div class='mailbox-preview-item'>{header}<div style='display: flex;padding-bottom: 2rem;'>{attachments}</div>{body}</div>"; 
-    }
 
     private void printTest()
     {
@@ -47,9 +38,7 @@ Welcome to your new app.
 
     private async Task AttachShadowDom()
     {
-        var previewHtml = BuildHTML();
-
-        await _jsModule.InvokeVoidAsync("attachShadowDom", "shadow-root", previewHtml);
+        await _jsModule.InvokeVoidAsync("attachShadowDom", "shadow-root");
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

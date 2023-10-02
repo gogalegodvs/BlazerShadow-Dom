@@ -1,5 +1,5 @@
 ﻿
-export function attachShadowDom(elementId,previewHtml) {
+export function attachShadowDom(elementId) {
     const host = document.getElementById(elementId);
 
     if (!host.shadowRoot) {
