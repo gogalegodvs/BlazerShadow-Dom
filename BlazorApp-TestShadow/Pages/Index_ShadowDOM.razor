@@ -11,8 +11,14 @@ Welcome to your new app.
 
 <div>
     <h1>Shadow DOM Component</h1>
-    <div id="shadow-root"></div>
+    <div id="shadow-root">
+        <div id="div-move">
+            @previewHTML
+            <button  @onclick="printTest">Print</button>
+        </div>
+    </div>
 </div>
+
 
 <button @onclick="AttachShadowDom">Populate</button>
 
@@ -21,10 +27,29 @@ Welcome to your new app.
 
     [Inject] private IJSRuntime JSRuntime { get; set; }
     private IJSObjectReference _jsModule = null!;
-    
+    private string previewHTML = "ABC";
+
+    private string BuildHTML(){
+
+        var header = "header";
+        var attachments = "attachments";
+        var body = "body";
+
+        return $"<div class='mailbox-preview-item'>{header}<div style='display: flex;padding-bottom: 2rem;'>{attachments}</div>{body}</div>"; 
+    }
+
+    private void printTest()
+    {
+        Console.WriteLine(previewHTML);
+
+        previewHTML = "12345";
+    }
+
     private async Task AttachShadowDom()
     {
-        await _jsModule.InvokeVoidAsync("attachShadowDom", "shadow-root");
+        var previewHtml = BuildHTML();
+
+        await _jsModule.InvokeVoidAsync("attachShadowDom", "shadow-root", previewHtml);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
